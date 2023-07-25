@@ -12,15 +12,13 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "DomainLayer", path: "../DomainLayer"),
-        .package(name: "DataLayer", path: "../DataLayer")
+        .package(name: "DomainLayer", path: "../DomainLayer")
     ],
     targets: [
         .target(
             name: "PresentationLayer",
             dependencies: [
-                "DomainLayer",
-                "DataLayer"
+                "DomainLayer"
             ]
         ),
         .testTarget(

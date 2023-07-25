@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UsersRepository.swift
 //  
 //
 //  Created by Jobson Mateus on 22/07/23.
@@ -15,9 +15,25 @@ final class UsersRepositoryImpl: UsersRepository {
         self.service = service
     }
     
-    func fetchAll(completion: (Result<[DomainLayer.User], Error>)) {
-        service.fetchAll { result in
-            
+    func fetchAll(isFirstPage: Bool, completion: @escaping (Result<[DomainLayer.User], Error>) -> Void) {
+        service.fetchAll(isFirstPage: isFirstPage) { result in
+            switch result {
+            case .success(let users):
+                completion(.success(users.map({ $0.toDomain() })))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func search(searchText: String, isFirstPage: Bool, completion: @escaping (Result<[DomainLayer.User], Error>) -> Void) {
+        service.search(searchText: searchText, isFirstPage: isFirstPage) { result in
+            switch result {
+            case .success(let users):
+                completion(.success(users.map({ $0.toDomain() })))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

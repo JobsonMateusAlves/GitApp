@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  API.swift
 //  
 //
 //  Created by Jobson Mateus on 22/07/23.
@@ -7,7 +7,6 @@
 
 import Foundation
 
-/// HTTP Methods
 public enum HTTPMethod: String {
    case GET
    case POST
