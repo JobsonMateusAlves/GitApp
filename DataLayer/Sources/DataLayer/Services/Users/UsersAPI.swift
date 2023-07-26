@@ -17,10 +17,7 @@ extension UsersAPI: API {
     var url: String {
         let baseURL: String = "https://api.github.com"
         switch self {
-        case .fetchAll(let since):
-            if let since = since {
-                return "\(baseURL)/users?since=\(since)"
-            }
+        case .fetchAll:
             return "\(baseURL)/users"
             
         case .search(let searchText, let page):
@@ -37,7 +34,18 @@ extension UsersAPI: API {
     }
     
     var parameters: [String : Any]? {
-        nil
+        switch self {
+        case .fetchAll(let since):
+            if let since = since {
+                return ["since": since]
+            }
+            return nil
+        case .search(let searchText, let page):
+            return [
+                "q": searchText,
+                "page": page
+            ]
+        }
     }
     
     var headers: [String : String]? {

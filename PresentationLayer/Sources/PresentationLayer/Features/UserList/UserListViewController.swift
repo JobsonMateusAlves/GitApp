@@ -15,7 +15,14 @@ public class UserListViewController: UIViewController {
         return tableView
     }()
     
+    let searchController: UISearchController = {
+        let searchControler: UISearchController = UISearchController(searchResultsController: nil)
+        return searchControler
+    }()
+    
     private let viewModel: UserListViewModel
+    private var debounceTimer: Timer?
+    private let debounceDelay: TimeInterval = 1
     
     public init(viewModel: UserListViewModel) {
         self.viewModel = viewModel
@@ -29,20 +36,34 @@ public class UserListViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Users"
         setupLayout()
         setupTableView()
+        setupSearchController()
         loadData()
+    }
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Pesquisar"
+        searchController.searchBar.sizeToFit()
     }
     
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: "UserTableViewCell")
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     func loadData() {
+        startLoading()
         viewModel.getUsers(isFirstPage: true) { [weak self] in
-            self?.tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self?.tableView.reloadData()
+                self?.stopLoading()
+            }
         }
     }
 }
@@ -66,8 +87,50 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.numberOfUsers - 1 {
-            viewModel.getUsers(isFirstPage: false) {
-                tableView.reloadData()
+            paginate()
+        }
+    }
+    
+    func paginate() {
+        startLoading()
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            viewModel.searchUsers(searchText: searchText, isFirstPage: false) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self?.tableView.reloadData()
+                    self?.stopLoading()
+                }
+            }
+        } else {
+            viewModel.getUsers(isFirstPage: false) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self?.tableView.reloadData()
+                    self?.stopLoading()
+                }
+            }
+        }
+    }
+}
+
+extension UserListViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    public func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            debounceTimer?.invalidate()
+            
+            debounceTimer = Timer.scheduledTimer(withTimeInterval: debounceDelay, repeats: false) { [weak self] _ in
+                self?.search(searchText: searchText)
+            }
+
+        } else {
+            loadData()
+        }
+    }
+    
+    func search(searchText: String) {
+        startLoading()
+        viewModel.searchUsers(searchText: searchText, isFirstPage: true) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self?.tableView.reloadData()
+                self?.stopLoading()
             }
         }
     }
@@ -91,3 +154,4 @@ extension UserListViewController {
         NSLayoutConstraint.activate(constraints)
     }
 }
+

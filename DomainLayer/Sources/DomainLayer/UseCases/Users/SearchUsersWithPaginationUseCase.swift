@@ -12,14 +12,14 @@ public protocol SearchUsersWithPaginationUseCase {
     func call(searchText: String, isFirstPage: Bool, completion: @escaping (Result<[User], Error>) -> Void)
 }
 
-final class SearchUsersWithPaginationUseCaseImpl: SearchUsersWithPaginationUseCase {
+public final class SearchUsersWithPaginationUseCaseImpl: SearchUsersWithPaginationUseCase {
     private let repository: UsersRepository
     
-    init(repository: UsersRepository) {
+    public init(repository: UsersRepository) {
         self.repository = repository
     }
     
-    func call(searchText: String, isFirstPage: Bool, completion: @escaping (Result<[User], Error>) -> Void) {
+    public func call(searchText: String, isFirstPage: Bool, completion: @escaping (Result<[User], Error>) -> Void) {
         repository.search(searchText: searchText, isFirstPage: isFirstPage, completion: completion)
     }
 }

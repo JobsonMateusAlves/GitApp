@@ -12,23 +12,46 @@ public protocol UserListViewModel {
     var numberOfUsers: Int { get }
     func userAt(index: Int) -> User
     func getUsers(isFirstPage: Bool, completion: @escaping (() -> Void))
+    func searchUsers(searchText: String, isFirstPage: Bool, completion: @escaping (() -> Void))
 }
 
 public class UserListViewModelImpl: UserListViewModel {
     
     private let getUsersWithPaginationUseCase: GetUsersWithPaginationUseCase
+    private let searchUsersWithPaginationUseCase: SearchUsersWithPaginationUseCase
     private var users: [User] = []
     
     public var numberOfUsers: Int {
         users.count
     }
     
-    public init(getUsersWithPaginationUseCase: GetUsersWithPaginationUseCase) {
+    public init(
+        getUsersWithPaginationUseCase: GetUsersWithPaginationUseCase,
+        searchUsersWithPaginationUseCase: SearchUsersWithPaginationUseCase
+    ) {
         self.getUsersWithPaginationUseCase = getUsersWithPaginationUseCase
+        self.searchUsersWithPaginationUseCase = searchUsersWithPaginationUseCase
     }
     
     public func getUsers(isFirstPage: Bool, completion: @escaping (() -> Void)) {
         getUsersWithPaginationUseCase.call(isFirstPage: isFirstPage) { [weak self] result in
+            switch result {
+            case .success(let users):
+                if isFirstPage {
+                    self?.users = users
+                } else {
+                    self?.users.append(contentsOf: users)
+                }
+                
+            case .failure(let error):
+                break
+            }
+            completion()
+        }
+    }
+    
+    public func searchUsers(searchText: String, isFirstPage: Bool, completion: @escaping (() -> Void)) {
+        searchUsersWithPaginationUseCase.call(searchText: searchText, isFirstPage: isFirstPage) { [weak self] result in
             switch result {
             case .success(let users):
                 if isFirstPage {

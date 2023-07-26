@@ -25,11 +25,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModel: UserListViewModel = UserListViewModelImpl(
             getUsersWithPaginationUseCase: GetUsersWithPaginationUseCaseImpl(
                 repository: UsersRepositoryFactory.make()
+            ),
+            searchUsersWithPaginationUseCase: SearchUsersWithPaginationUseCaseImpl(
+                repository: UsersRepositoryFactory.make()
             )
         )
         let navigationController = UINavigationController(rootViewController: UserListViewController(viewModel: viewModel))
 //        coordinator.start()
-        
+        navigationController.navigationBar.prefersLargeTitles = true
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
