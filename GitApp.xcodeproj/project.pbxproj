@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F60E3F7C2A715F0800C93093 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = F60E3F7B2A715F0800C93093 /* DataLayer */; };
+		F60E3F7E2A715F0F00C93093 /* DomainLayer in Frameworks */ = {isa = PBXBuildFile; productRef = F60E3F7D2A715F0F00C93093 /* DomainLayer */; };
+		F60E3F802A715F1300C93093 /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = F60E3F7F2A715F1300C93093 /* PresentationLayer */; };
 		F6318DF72A6E5063009DF55F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DF62A6E5063009DF55F /* AppDelegate.swift */; };
 		F6318DF92A6E5063009DF55F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DF82A6E5063009DF55F /* SceneDelegate.swift */; };
 		F6318DFB2A6E5063009DF55F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DFA2A6E5063009DF55F /* ViewController.swift */; };
@@ -60,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60E3F7E2A715F0F00C93093 /* DomainLayer in Frameworks */,
+				F60E3F802A715F1300C93093 /* PresentationLayer in Frameworks */,
+				F60E3F7C2A715F0800C93093 /* DataLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F60E3F7A2A715F0800C93093 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F6318DEA2A6E5063009DF55F = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +101,7 @@
 				F6318E0C2A6E5066009DF55F /* GitAppTests */,
 				F6318E162A6E5066009DF55F /* GitAppUITests */,
 				F6318DF42A6E5063009DF55F /* Products */,
+				F60E3F7A2A715F0800C93093 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +173,11 @@
 			dependencies = (
 			);
 			name = GitApp;
+			packageProductDependencies = (
+				F60E3F7B2A715F0800C93093 /* DataLayer */,
+				F60E3F7D2A715F0F00C93093 /* DomainLayer */,
+				F60E3F7F2A715F1300C93093 /* PresentationLayer */,
+			);
 			productName = GitApp;
 			productReference = F6318DF32A6E5063009DF55F /* GitApp.app */;
 			productType = "com.apple.product-type.application";
@@ -618,6 +637,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F60E3F7B2A715F0800C93093 /* DataLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DataLayer;
+		};
+		F60E3F7D2A715F0F00C93093 /* DomainLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DomainLayer;
+		};
+		F60E3F7F2A715F1300C93093 /* PresentationLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PresentationLayer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F6318DEB2A6E5063009DF55F /* Project object */;
 }

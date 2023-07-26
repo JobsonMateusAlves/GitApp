@@ -9,7 +9,7 @@ import Foundation
 
 open class Provider {
     
-    init() {}
+    public init() {}
     
     public func request(
         target: API,
@@ -58,8 +58,9 @@ open class Provider {
                 }
                 return
             }
-            
-            completion?(.success((data, response)))
+            DispatchQueue.main.async {
+                completion?(.success((data, response)))
+            }
         }
         .resume()
     }

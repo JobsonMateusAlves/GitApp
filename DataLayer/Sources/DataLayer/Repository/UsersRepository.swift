@@ -37,3 +37,9 @@ final class UsersRepositoryImpl: UsersRepository {
         }
     }
 }
+
+public struct UsersRepositoryFactory {
+    public static func make() -> UsersRepository {
+        UsersRepositoryImpl(service: UsersServiceImpl())
+    }
+}
