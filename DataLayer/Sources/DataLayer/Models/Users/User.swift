@@ -77,7 +77,7 @@ extension User: DataModel {
         )
     }
     
-    func from(domain: DomainLayer.User) -> User {
+    static func from(domain: DomainLayer.User) -> User {
         return User(
             login: domain.login,
             id: domain.id,

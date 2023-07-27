@@ -25,7 +25,7 @@ class UserDetailCoordinator: Coordinator, UserDetail {
         let viewModel: UserDetailViewModel = UserDetailViewModelFactory.make(
             getUserDetailUseCase: GetUserDetailUseCaseFactory.make(
                 repository: UsersRepositoryFactory.make()
-            )
+            ),
             user: user
         )
         

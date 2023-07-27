@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: protocol
 public protocol GetUserDetailUseCase {
-    func call(completion: @escaping (Result<User, Error>) -> Void)
+    func call(user: User, completion: @escaping (Result<User, Error>) -> Void)
 }
 
 public final class GetUserDetailUseCaseImpl: GetUserDetailUseCase {
@@ -20,8 +20,8 @@ public final class GetUserDetailUseCaseImpl: GetUserDetailUseCase {
         self.repository = repository
     }
     
-    public func call(completion: @escaping (Result<User, Error>) -> Void) {
-        repository.fetch(user: User, completion: completion)
+    public func call(user: User, completion: @escaping (Result<User, Error>) -> Void) {
+        repository.fetch(user: user, completion: completion)
     }
 }
 

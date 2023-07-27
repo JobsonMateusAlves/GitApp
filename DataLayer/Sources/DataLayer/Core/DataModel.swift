@@ -11,5 +11,5 @@ protocol DataModel {
     associatedtype DomainModel
     
     func toDomain() -> DomainModel
-    func from(domain: DomainModel) -> Self
+    static func from(domain: DomainModel) -> Self
 }

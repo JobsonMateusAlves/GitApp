@@ -27,14 +27,14 @@ extension Repo: DataModel {
     func toDomain() -> DomainLayer.Repo {
         return DomainLayer.Repo(
             name: name,
-            language: language,
+            language: language
         )
     }
     
-    func from(domain: DomainLayer.Repo) -> Repo {
+    static func from(domain: DomainLayer.Repo) -> Repo {
         return Repo(
             name: domain.name,
-            language: domain.language,
+            language: domain.language
         )
     }
 }

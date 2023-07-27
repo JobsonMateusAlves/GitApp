@@ -14,7 +14,7 @@ public protocol UserDetailViewModel {
 }
 
 public class UserDetailViewModelImpl: UserDetailViewModel {
-    private getUserDetailUseCase: GetUserDetailUseCase
+    private let getUserDetailUseCase: GetUserDetailUseCase
     public var user: User
     
     public init(

@@ -24,7 +24,7 @@ extension UsersAPI: API {
         case .search(let searchText, let page):
             return "\(baseURL)/search/users?q=\(searchText)&page=\(page)"
 
-        case .fetch:
+        case .fetch(let user):
             return "\(baseURL)/users/\(user.login)"
         }
     }
@@ -49,6 +49,8 @@ extension UsersAPI: API {
                 "q": searchText,
                 "page": page
             ]
+        case .fetch:
+            return nil
         }
     }
     

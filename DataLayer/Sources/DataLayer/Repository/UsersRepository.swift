@@ -37,8 +37,8 @@ final class UsersRepositoryImpl: UsersRepository {
         }
     }
 
-    func fetch(user: User, completion: @escaping (Result<User, Error>) -> Void) {
-        service.fetch(user: user) { result in
+    func fetch(user: DomainLayer.User, completion: @escaping (Result<DomainLayer.User, Error>) -> Void) {
+        service.fetch(user: DataLayer.User.from(domain: user)) { result in
             switch result {
             case .success(let newUser):
                 completion(.success(newUser.toDomain()))

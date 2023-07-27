@@ -67,7 +67,7 @@ final class UsersServiceImpl: Provider, UsersService {
             switch result {
             case .success((let data, _)):
                 do {
-                    let users: [User] = try JSONDecoder().decode(User.self, from: data)
+                    let users: User = try JSONDecoder().decode(User.self, from: data)
                     completion(.success(users))
                 } catch {
                     completion(.failure(APIError.parseFailed))

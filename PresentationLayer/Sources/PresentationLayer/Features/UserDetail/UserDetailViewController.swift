@@ -94,13 +94,6 @@ public class UserDetailViewController: UIViewController {
         return label
     }()
 
-    let urlButton: UIButton = {
-        let button: UIButton = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(.blue, for: .normal)
-        return button
-    }()
-
     let tableView: UITableView = {
         let tableView: UITableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -126,12 +119,7 @@ public class UserDetailViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        setupButton()
         loadData()
-    }
-
-    func setupButton() {
-        urlButton.addTarget(self, action: #selector(openUserHtmlUrl), for: .touchUpInside)
     }
 
     func loadData() {
@@ -148,18 +136,11 @@ public class UserDetailViewController: UIViewController {
         locationLabel.text = user.location
         followersLabel.text = "\(user.followers) seguidores"
         followingLabel.text = "\(user.following) seguindo"
-        urlButton.setTitle(user.htmlUrl, for: .normal)
 
         if let url = URL(string: user.avatarUrl) {
             imageLoader.loadImage(with: url) { [weak self] image in
                 self?.userImageView.setImage(image: image)
             }
-        }
-    }
-
-    @objc func openUserHtmlUrl() {
-        if let url = URL(string: viewModel.user.htmlUrl) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }
@@ -171,7 +152,6 @@ extension UserDetailViewController {
         setupBioLabelLayout()
         setupLocationLabelLayout()
         setupFollowersStackViewLayout()
-        setupurlButtonLayout()
 
         view.backgroundColor = .black
     }
@@ -245,18 +225,6 @@ extension UserDetailViewController {
 
         followersStackView.addArrangedSubview(followersLabel)
         followersStackView.addArrangedSubview(followingLabel)
-        
-        NSLayoutConstraint.activate(constraints)
-    }
-
-    func setupurlButtonLayout() {
-        view.addSubview(urlButton)
-
-        let constraints: [NSLayoutConstraint] = [
-            urlButton.topAnchor.constraint(equalTo: followersStackView.bottomAnchor, constant: 8),
-            urlButton.leadingAnchor.constraint(equalTo: followersStackView.leadingAnchor),
-            urlButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
-        ]
         
         NSLayoutConstraint.activate(constraints)
     }
