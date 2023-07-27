@@ -18,6 +18,7 @@ public class UserDetailViewController: UIViewController {
         let imageView: UIImageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .blue
         return imageView
     }()
 
@@ -134,12 +135,12 @@ public class UserDetailViewController: UIViewController {
 
     func setContent() {
         let user: User = viewModel.user
-        nameLabel.text = user.name
-        loginLabel.text = user.login
-        bioLabel.text = user.bio
-        locationLabel.text = user.location
-        followersLabel.text = "\(user.followers)"
-        followingLabel.text = "\(user.following)"
+        nameLabel.text = "Jobson Mateus"
+        loginLabel.text = "JobsonMateusAlves"
+        bioLabel.text = "iOS Developer"
+        locationLabel.text = "Fortaleza"
+        followersLabel.text = "\(user.followers) seguidores"
+        followingLabel.text = "\(user.following) seguindo"
         urlButton.setTitle(user.htmlUrl, for: .normal)
 
         if let url = URL(string: user.avatarUrl) {
@@ -172,8 +173,8 @@ extension UserDetailViewController {
         view.addSubview(userImageView)
         
         let constraints: [NSLayoutConstraint] = [
-            userImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            userImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            userImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            userImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             userImageView.heightAnchor.constraint(equalToConstant: 60),
             userImageView.widthAnchor.constraint(equalToConstant: 60)
         ]
@@ -181,7 +182,7 @@ extension UserDetailViewController {
         NSLayoutConstraint.activate(constraints)
         
         view.layoutIfNeeded()
-        
+
         userImageView.layer.cornerRadius = userImageView.frame.height / 2
         userImageView.layer.borderColor = UIColor.white.cgColor
         userImageView.layer.borderWidth = 2
