@@ -9,6 +9,15 @@ import UIKit
 
 public class UserDetailViewController: UIViewController {
 
+    let nameLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.textColor = .white
+        label.textAlignment = .left
+        return label
+    }()
+
     public init() {
         super.init(nibName: nil, bundle: nil)
     }
