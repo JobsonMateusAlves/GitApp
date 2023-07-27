@@ -13,6 +13,7 @@ public struct User {
     public let avatarUrl: String
     public let htmlUrl: String
     public let name: String
+    public let bio: String
     public let location: String
     public let publicRepos: Int
     public let followers: Int
@@ -24,6 +25,7 @@ public struct User {
         avatarUrl: String,
         htmlUrl: String,
         name: String,
+        bio: String,
         location: String,
         publicRepos: Int,
         followers: Int,
@@ -34,6 +36,7 @@ public struct User {
         self.avatarUrl = avatarUrl
         self.htmlUrl = htmlUrl
         self.name = name
+        self.bio = bio
         self.location = location
         self.publicRepos = publicRepos
         self.followers = followers

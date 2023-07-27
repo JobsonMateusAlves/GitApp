@@ -14,6 +14,7 @@ struct User: Codable {
     public let avatarUrl: String
     public let htmlUrl: String
     public let name: String?
+    public let bio: String?
     public let location: String?
     public let publicRepos: Int?
     public let followers: Int?
@@ -25,6 +26,7 @@ struct User: Codable {
         case avatarUrl = "avatar_url"
         case htmlUrl = "html_url"
         case name
+        case bio
         case location
         case publicRepos = "public_repos"
         case followers
@@ -37,6 +39,7 @@ struct User: Codable {
         avatarUrl: String,
         htmlUrl: String,
         name: String?,
+        bio: String?,
         location: String?,
         publicRepos: Int?,
         followers: Int?,
@@ -47,6 +50,7 @@ struct User: Codable {
         self.avatarUrl = avatarUrl
         self.htmlUrl = htmlUrl
         self.name = name
+        self.bio = bio
         self.location = location
         self.publicRepos = publicRepos
         self.followers = followers
@@ -65,6 +69,7 @@ extension User: DataModel {
             avatarUrl: avatarUrl,
             htmlUrl: htmlUrl,
             name: name ?? "",
+            bio: bio ?? "",
             location: location ?? "",
             publicRepos: publicRepos ?? 0,
             followers: followers ?? 0,
@@ -79,6 +84,7 @@ extension User: DataModel {
             avatarUrl: domain.avatarUrl,
             htmlUrl: domain.htmlUrl,
             name: domain.name,
+            bio: domain.bio,
             location: domain.location,
             publicRepos: domain.publicRepos,
             followers: domain.followers,
