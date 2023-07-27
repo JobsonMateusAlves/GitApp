@@ -1,8 +1,8 @@
 //
-//  UserDetailCoordinator.swift
+//  RepoListCoordinator.swift
 //  GitApp
 //
-//  Created by Jobson Mateus on 26/07/23.
+//  Created by Jobson Mateus on 27/07/23.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import DomainLayer
 import PresentationLayer
 import DataLayer
 
-class UserDetailCoordinator: Coordinator, UserDetail {
+class RepoListCoordinator: Coordinator, RepoList {
     var finish: (() -> Void)?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -22,23 +22,18 @@ class UserDetailCoordinator: Coordinator, UserDetail {
     }
 
     func start() {
-        let viewModel: UserDetailViewModel = UserDetailViewModelFactory.make(
-            getUserDetailUseCase: GetUserDetailUseCaseFactory.make(
-                repository: UsersRepositoryFactory.make()
+        let viewModel: RepoListViewModel = RepoListViewModelFactory.make(
+            getReposUseCase: GetReposUseCaseFactory.make(
+                repository: ReposRepositoryFactory.make()
             ),
             user: user
         )
         
-        let controller = UserDetailViewController(
+        let controller = RepoListViewController(
             viewModel: viewModel,
             coordinator: self
         )
         navigationController.pushViewController(controller, animated: true)
     }
     
-    func startRepoListFlow(user: User) {
-        let coordinator: Coordinator = RepoListCoordinator(navigationController: navigationController, user: user)
-        childCoordinators.append(coordinator)
-        coordinator.start()
-    }
 }

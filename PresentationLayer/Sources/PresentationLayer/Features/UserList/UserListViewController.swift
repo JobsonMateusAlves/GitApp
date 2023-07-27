@@ -12,12 +12,13 @@ public protocol UserList {
     func startUserDetailFlow(user: User)
 }
 
-public class UserListViewController: UIViewController {
+public class UserListViewController: BaseViewController {
     
     let tableView: UITableView = {
         let tableView: UITableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .black
+        tableView.separatorColor = .darkGray
         return tableView
     }()
     
@@ -103,6 +104,8 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchController.isActive = false
+        
         coordinator.startUserDetailFlow(user: viewModel.userAt(index: indexPath.row))
     }
     

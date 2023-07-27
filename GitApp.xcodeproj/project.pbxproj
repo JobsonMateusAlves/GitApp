@@ -13,6 +13,7 @@
 		F60E3F832A72104400C93093 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E3F822A72104300C93093 /* MainCoordinator.swift */; };
 		F60E3F852A72104D00C93093 /* UserListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E3F842A72104D00C93093 /* UserListCoordinator.swift */; };
 		F60E3F872A7213A000C93093 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E3F862A7213A000C93093 /* UserDetailCoordinator.swift */; };
+		F60E3F892A728D5D00C93093 /* RepoListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E3F882A728D5D00C93093 /* RepoListCoordinator.swift */; };
 		F6318DF72A6E5063009DF55F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DF62A6E5063009DF55F /* AppDelegate.swift */; };
 		F6318DF92A6E5063009DF55F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DF82A6E5063009DF55F /* SceneDelegate.swift */; };
 		F6318DFB2A6E5063009DF55F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DFA2A6E5063009DF55F /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 		F60E3F822A72104300C93093 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		F60E3F842A72104D00C93093 /* UserListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCoordinator.swift; sourceTree = "<group>"; };
 		F60E3F862A7213A000C93093 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
+		F60E3F882A728D5D00C93093 /* RepoListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListCoordinator.swift; sourceTree = "<group>"; };
 		F6318DF32A6E5063009DF55F /* GitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6318DF62A6E5063009DF55F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6318DF82A6E5063009DF55F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				F60E3F822A72104300C93093 /* MainCoordinator.swift */,
 				F60E3F842A72104D00C93093 /* UserListCoordinator.swift */,
 				F60E3F862A7213A000C93093 /* UserDetailCoordinator.swift */,
+				F60E3F882A728D5D00C93093 /* RepoListCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				F60E3F872A7213A000C93093 /* UserDetailCoordinator.swift in Sources */,
 				F60E3F852A72104D00C93093 /* UserListCoordinator.swift in Sources */,
 				F6318DF72A6E5063009DF55F /* AppDelegate.swift in Sources */,
+				F60E3F892A728D5D00C93093 /* RepoListCoordinator.swift in Sources */,
 				F6318DF92A6E5063009DF55F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

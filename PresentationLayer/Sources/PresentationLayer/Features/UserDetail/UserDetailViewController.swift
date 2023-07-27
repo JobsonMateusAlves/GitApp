@@ -9,16 +9,15 @@ import UIKit
 import DomainLayer
 
 public protocol UserDetail {
-
+    func startRepoListFlow(user: User)
 }
 
-public class UserDetailViewController: UIViewController {
+public class UserDetailViewController: BaseViewController {
 
     let userImageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .blue
         return imageView
     }()
 
@@ -93,12 +92,14 @@ public class UserDetailViewController: UIViewController {
         label.textAlignment = .left
         return label
     }()
-
-    let tableView: UITableView = {
-        let tableView: UITableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .black
-        return tableView
+    
+    let repositoryButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.setTitle("Ver lista de repositórios", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        return button
     }()
 
     private let viewModel: UserDetailViewModel
@@ -118,13 +119,26 @@ public class UserDetailViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "User Detail"
+        
         setupLayout()
+        setupButton()
         loadData()
     }
 
+    func setupButton() {
+        repositoryButton.addTarget(self, action: #selector(openRepoList), for: .touchUpInside)
+    }
+    
+    @objc func openRepoList() {
+        coordinator.startRepoListFlow(user: viewModel.user)
+    }
+    
     func loadData() {
+        startLoading()
         viewModel.getUser() { [weak self] in
             self?.setContent()
+            self?.stopLoading()
         }
     }
 
@@ -152,6 +166,7 @@ extension UserDetailViewController {
         setupBioLabelLayout()
         setupLocationLabelLayout()
         setupFollowersStackViewLayout()
+        setupRepositoryButtonLayout()
 
         view.backgroundColor = .black
     }
@@ -225,6 +240,24 @@ extension UserDetailViewController {
 
         followersStackView.addArrangedSubview(followersLabel)
         followersStackView.addArrangedSubview(followingLabel)
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupRepositoryButtonLayout() {
+        view.addSubview(repositoryButton)
+
+        let constraints: [NSLayoutConstraint] = [
+            repositoryButton.topAnchor.constraint(equalTo: followersStackView.bottomAnchor, constant: 20),
+            repositoryButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            repositoryButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            repositoryButton.heightAnchor.constraint(equalToConstant: 48)
+        ]
+        
+        repositoryButton.layer.cornerRadius = 8
+        repositoryButton.layer.borderColor = UIColor.white.cgColor
+        repositoryButton.layer.borderWidth = 1
+        
         
         NSLayoutConstraint.activate(constraints)
     }

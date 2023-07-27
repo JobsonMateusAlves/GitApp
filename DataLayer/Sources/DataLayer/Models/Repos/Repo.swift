@@ -10,7 +10,7 @@ import DomainLayer
 
 public struct Repo: Codable {
     public let name: String
-    public let language: String
+    public let language: String?
     
     public init(
         name: String,
@@ -27,7 +27,7 @@ extension Repo: DataModel {
     func toDomain() -> DomainLayer.Repo {
         return DomainLayer.Repo(
             name: name,
-            language: language
+            language: language ?? ""
         )
     }
     

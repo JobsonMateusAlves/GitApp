@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol ReposRepository {
-    func fetchAll(isFirstPage: Bool, completion: @escaping (Result<[Repo], Error>) -> Void)
+    func fetchAll(isFirstPage: Bool, user: User, completion: @escaping (Result<[DomainLayer.Repo], Error>) -> Void)
 }

@@ -8,18 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    func startLoading() {
-        let loadingController: LoadingViewController = LoadingViewController()
-        loadingController.modalPresentationStyle = .overFullScreen
-        loadingController.modalTransitionStyle = .crossDissolve
-        navigationController?.present(loadingController, animated: true)
-    }
-    
-    func stopLoading() {
-        if let _ = navigationController?.visibleViewController as? LoadingViewController {
-            navigationController?.dismiss(animated: true)
-        }
-    }
+
     
     func showError(error: String) {
         let errorController: ErrorViewController = ErrorViewController()

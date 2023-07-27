@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: protocol
 public protocol GetUsersWithPaginationUseCase {
     func call(isFirstPage: Bool, completion: @escaping (Result<[User], Error>) -> Void)
 }

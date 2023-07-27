@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController {
+class LoadingView: UIView {
     
     let loadingIndicator: UIActivityIndicatorView = {
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
@@ -24,34 +24,30 @@ class LoadingViewController: UIViewController {
         return view
     }()
     
-    public init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupLayout()
         loadingIndicator.startAnimating()
     }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }
 
-extension LoadingViewController {
+extension LoadingView {
     func setupLayout() {
         setupBackgroundViewLayout()
         setupLoadingIndicatorLayout()
-        view.backgroundColor = .clear
+        backgroundColor = .clear
     }
     
     func setupBackgroundViewLayout() {
-        view.addSubview(backgroundView)
+        addSubview(backgroundView)
         
         let constraints: [NSLayoutConstraint] = [
-            backgroundView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            backgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            backgroundView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
             backgroundView.heightAnchor.constraint(equalToConstant: 80),
             backgroundView.widthAnchor.constraint(equalToConstant: 80)
         ]
@@ -60,11 +56,11 @@ extension LoadingViewController {
     }
     
     func setupLoadingIndicatorLayout() {
-        view.addSubview(loadingIndicator)
+        addSubview(loadingIndicator)
         
         let constraints: [NSLayoutConstraint] = [
-            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             loadingIndicator.heightAnchor.constraint(equalToConstant: 60),
             loadingIndicator.widthAnchor.constraint(equalToConstant: 60)
         ]
