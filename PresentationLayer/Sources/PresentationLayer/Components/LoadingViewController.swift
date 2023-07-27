@@ -41,12 +41,12 @@ class LoadingViewController: UIViewController {
 
 extension LoadingViewController {
     func setupLayout() {
-        setupBackgroundView()
+        setupBackgroundViewLayout()
         setupLoadingIndicatorLayout()
         view.backgroundColor = .clear
     }
     
-    func setupBackgroundView() {
+    func setupBackgroundViewLayout() {
         view.addSubview(backgroundView)
         
         let constraints: [NSLayoutConstraint] = [
@@ -70,22 +70,5 @@ extension LoadingViewController {
         ]
         
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    
-}
-
-extension UIViewController {
-    func startLoading() {
-        let loadingController: LoadingViewController = LoadingViewController()
-        loadingController.modalPresentationStyle = .overFullScreen
-        loadingController.modalTransitionStyle = .crossDissolve
-        navigationController?.present(loadingController, animated: true)
-    }
-    
-    func stopLoading() {
-        if let _ = navigationController?.visibleViewController as? LoadingViewController {
-            navigationController?.dismiss(animated: true)
-        }
     }
 }

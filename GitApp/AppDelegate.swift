@@ -13,7 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let navigationBarAppearance: UINavigationBarAppearance = customNavBarAppearance()
+        
+        let appearance = UINavigationBar.appearance()
+        appearance.scrollEdgeAppearance = navigationBarAppearance
+        appearance.compactAppearance = navigationBarAppearance
+        appearance.standardAppearance = navigationBarAppearance
+        appearance.compactScrollEdgeAppearance = navigationBarAppearance
+        
         return true
     }
 
@@ -31,6 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    func customNavBarAppearance() -> UINavigationBarAppearance {
+        let navigationBarAppearance = UINavigationBarAppearance()
+        
+        // Apply a red background.
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundColor = .black
+        
+        // Apply white colored normal and large titles.
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        return navigationBarAppearance
+    }
 }
 

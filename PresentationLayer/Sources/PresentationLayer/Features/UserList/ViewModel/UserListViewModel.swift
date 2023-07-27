@@ -10,6 +10,7 @@ import DomainLayer
 
 public protocol UserListViewModel {
     var numberOfUsers: Int { get }
+    var isSearching: Bool { get set }
     func userAt(index: Int) -> User
     func getUsers(isFirstPage: Bool, completion: @escaping (() -> Void))
     func searchUsers(searchText: String, isFirstPage: Bool, completion: @escaping (() -> Void))
@@ -20,6 +21,7 @@ public class UserListViewModelImpl: UserListViewModel {
     private let getUsersWithPaginationUseCase: GetUsersWithPaginationUseCase
     private let searchUsersWithPaginationUseCase: SearchUsersWithPaginationUseCase
     private var users: [User] = []
+    public var isSearching: Bool = false
     
     public var numberOfUsers: Int {
         users.count
@@ -34,6 +36,7 @@ public class UserListViewModelImpl: UserListViewModel {
     }
     
     public func getUsers(isFirstPage: Bool, completion: @escaping (() -> Void)) {
+        isSearching = false
         getUsersWithPaginationUseCase.call(isFirstPage: isFirstPage) { [weak self] result in
             switch result {
             case .success(let users):
@@ -51,6 +54,7 @@ public class UserListViewModelImpl: UserListViewModel {
     }
     
     public func searchUsers(searchText: String, isFirstPage: Bool, completion: @escaping (() -> Void)) {
+        isSearching = true
         searchUsersWithPaginationUseCase.call(searchText: searchText, isFirstPage: isFirstPage) { [weak self] result in
             switch result {
             case .success(let users):
