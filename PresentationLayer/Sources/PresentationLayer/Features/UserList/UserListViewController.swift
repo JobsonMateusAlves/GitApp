@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol UserList {
-    func startUserDetailFlow()
+    func startUserDetailFlow(user: User)
 }
 
 public class UserListViewController: UIViewController {

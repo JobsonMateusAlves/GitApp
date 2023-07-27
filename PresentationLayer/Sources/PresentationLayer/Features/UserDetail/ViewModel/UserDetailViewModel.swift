@@ -13,7 +13,7 @@ public protocol UserDetailViewModel {
     func getUser(completion: @escaping (() -> Void))
 }
 
-public class UserListViewModelImpl: UserListViewModel {
+public class UserDetailViewModelImpl: UserListViewModel {
     var user: User
     
     public init(

@@ -101,9 +101,10 @@ public class UserDetailViewController: UIViewController {
 
     private let viewModel: UserDetailViewModel
     private let coordinator: (UserDetail & Coordinator)
+    
     private let imageLoader: ImageLoader = ImageLoader()
 
-    public init() {
+    public init(viewModel: UserDetailViewModel, coordinator: (UserDetail & Coordinator)) {
         super.init(nibName: nil, bundle: nil)
     }
     

@@ -39,8 +39,8 @@ class UserListCoordinator: UserList, Coordinator {
         }
     }
     
-    func startUserDetailFlow() {
-        let coordinator: Coordinator = UserDetailCoordinator(navigationController: navigationController)
+    func startUserDetailFlow(user: User) {
+        let coordinator: Coordinator = UserDetailCoordinator(navigationController: navigationController, user: user)
         childCoordinators.append(coordinator)
         coordinator.start()
     }
