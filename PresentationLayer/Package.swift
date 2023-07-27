@@ -13,13 +13,18 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(name: "DomainLayer", path: "../DomainLayer")
+        .package(name: "DomainLayer", path: "../DomainLayer"),
+        .package(url: "https://github.com/Juanpe/SkeletonView.git", from: "1.30.4")
     ],
     targets: [
         .target(
             name: "PresentationLayer",
             dependencies: [
-                "DomainLayer"
+                "DomainLayer",
+                .product(
+                    name: "SkeletonView",
+                    package: "SkeletonView"
+                )
             ]
         ),
         .testTarget(

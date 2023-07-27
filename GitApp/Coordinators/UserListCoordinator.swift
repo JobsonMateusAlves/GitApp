@@ -33,8 +33,15 @@ class UserListCoordinator: UserList, Coordinator {
             viewModel: viewModel,
             coordinator: self
         )
+        
         UIView.transition(with: navigationController.view, duration: 0.5, options: [.transitionCrossDissolve]) { [weak self] in
             self?.navigationController.setViewControllers([controller], animated: true)
         }
+    }
+    
+    func startUserDetailFlow() {
+        let coordinator: Coordinator = UserDetailCoordinator(navigationController: navigationController)
+        childCoordinators.append(coordinator)
+        coordinator.start()
     }
 }

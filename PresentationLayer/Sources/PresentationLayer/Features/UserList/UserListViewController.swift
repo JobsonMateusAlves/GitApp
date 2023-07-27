@@ -8,7 +8,7 @@
 import UIKit
 
 public protocol UserList {
-    
+    func startUserDetailFlow()
 }
 
 public class UserListViewController: UIViewController {
@@ -44,6 +44,7 @@ public class UserListViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Users"
+        
         setupNavigationBar()
         setupLayout()
         setupTableView()
@@ -98,6 +99,10 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator.startUserDetailFlow()
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
