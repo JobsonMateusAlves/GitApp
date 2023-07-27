@@ -192,7 +192,7 @@ extension UserDetailViewController {
         view.addSubview(nameStackView)
 
         let constraints: [NSLayoutConstraint] = [
-            nameStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            nameStackView.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor),
             nameStackView.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 16),
             nameStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
         ]
@@ -207,7 +207,7 @@ extension UserDetailViewController {
         view.addSubview(bioLabel)
 
         let constraints: [NSLayoutConstraint] = [
-            bioLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 16),
+            bioLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 8),
             bioLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
             bioLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
         ]
@@ -219,7 +219,7 @@ extension UserDetailViewController {
         view.addSubview(locationLabel)
 
         let constraints: [NSLayoutConstraint] = [
-            locationLabel.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 16),
+            locationLabel.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 8),
             locationLabel.leadingAnchor.constraint(equalTo: bioLabel.leadingAnchor),
             locationLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
         ]
@@ -231,7 +231,7 @@ extension UserDetailViewController {
         view.addSubview(followersStackView)
 
         let constraints: [NSLayoutConstraint] = [
-            followersStackView.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 16),
+            followersStackView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 8),
             followersStackView.leadingAnchor.constraint(equalTo: locationLabel.leadingAnchor),
             followersStackView.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
         ]
@@ -246,7 +246,7 @@ extension UserDetailViewController {
         view.addSubview(urlButton)
 
         let constraints: [NSLayoutConstraint] = [
-            urlButton.topAnchor.constraint(equalTo: followersStackView.bottomAnchor, constant: 16),
+            urlButton.topAnchor.constraint(equalTo: followersStackView.bottomAnchor, constant: 8),
             urlButton.leadingAnchor.constraint(equalTo: followersStackView.leadingAnchor),
             urlButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
         ]
