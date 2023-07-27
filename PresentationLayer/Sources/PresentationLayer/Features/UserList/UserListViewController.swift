@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DomainLayer
 
 public protocol UserList {
     func startUserDetailFlow(user: User)
@@ -102,7 +103,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator.startUserDetailFlow()
+        coordinator.startUserDetailFlow(user: viewModel.userAt(index: indexPath.row))
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

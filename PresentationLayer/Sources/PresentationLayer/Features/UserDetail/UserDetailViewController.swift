@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import DomainLayer
 
-protocol UserDetail {
+public protocol UserDetail {
 
 }
 
@@ -96,7 +97,7 @@ public class UserDetailViewController: UIViewController {
         let button: UIButton = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.blue, for: .normal)
-        return label
+        return button
     }()
 
     private let viewModel: UserDetailViewModel
@@ -105,6 +106,8 @@ public class UserDetailViewController: UIViewController {
     private let imageLoader: ImageLoader = ImageLoader()
 
     public init(viewModel: UserDetailViewModel, coordinator: (UserDetail & Coordinator)) {
+        self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -124,8 +127,8 @@ public class UserDetailViewController: UIViewController {
     }
 
     func loadData() {
-        viewModel.getUser() {
-            setContent()
+        viewModel.getUser() { [weak self] in
+            self?.setContent()
         }
     }
 
@@ -135,8 +138,8 @@ public class UserDetailViewController: UIViewController {
         loginLabel.text = user.login
         bioLabel.text = user.bio
         locationLabel.text = user.location
-        followersLabel.text = user.followers
-        followingLabel.text = user.following
+        followersLabel.text = "\(user.followers)"
+        followingLabel.text = "\(user.following)"
         urlButton.setTitle(user.htmlUrl, for: .normal)
 
         if let url = URL(string: user.avatarUrl) {
@@ -153,7 +156,7 @@ public class UserDetailViewController: UIViewController {
     }
 }
 
-extension UserListViewController {
+extension UserDetailViewController {
     func setupLayout() {
         setupUserImageViewLayout()
         setupNameStackViewLayout()
@@ -177,7 +180,7 @@ extension UserListViewController {
         
         NSLayoutConstraint.activate(constraints)
         
-        layoutIfNeeded()
+        view.layoutIfNeeded()
         
         userImageView.layer.cornerRadius = userImageView.frame.height / 2
         userImageView.layer.borderColor = UIColor.white.cgColor
