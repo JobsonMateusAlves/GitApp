@@ -7,6 +7,10 @@
 
 import UIKit
 
+public protocol UserList {
+    
+}
+
 public class UserListViewController: UIViewController {
     
     let tableView: UITableView = {
@@ -22,11 +26,13 @@ public class UserListViewController: UIViewController {
     }()
     
     private let viewModel: UserListViewModel
+    private let coordinator: (UserList & Coordinator)
     private var debounceTimer: Timer?
     private let debounceDelay: TimeInterval = 1
     
-    public init(viewModel: UserListViewModel) {
+    public init(viewModel: UserListViewModel, coordinator: (UserList & Coordinator)) {
         self.viewModel = viewModel
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     

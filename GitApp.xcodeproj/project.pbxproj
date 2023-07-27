@@ -10,6 +10,8 @@
 		F60E3F7C2A715F0800C93093 /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = F60E3F7B2A715F0800C93093 /* DataLayer */; };
 		F60E3F7E2A715F0F00C93093 /* DomainLayer in Frameworks */ = {isa = PBXBuildFile; productRef = F60E3F7D2A715F0F00C93093 /* DomainLayer */; };
 		F60E3F802A715F1300C93093 /* PresentationLayer in Frameworks */ = {isa = PBXBuildFile; productRef = F60E3F7F2A715F1300C93093 /* PresentationLayer */; };
+		F60E3F832A72104400C93093 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E3F822A72104300C93093 /* MainCoordinator.swift */; };
+		F60E3F852A72104D00C93093 /* UserListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E3F842A72104D00C93093 /* UserListCoordinator.swift */; };
 		F6318DF72A6E5063009DF55F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DF62A6E5063009DF55F /* AppDelegate.swift */; };
 		F6318DF92A6E5063009DF55F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DF82A6E5063009DF55F /* SceneDelegate.swift */; };
 		F6318DFB2A6E5063009DF55F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6318DFA2A6E5063009DF55F /* ViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F60E3F822A72104300C93093 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		F60E3F842A72104D00C93093 /* UserListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCoordinator.swift; sourceTree = "<group>"; };
 		F6318DF32A6E5063009DF55F /* GitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6318DF62A6E5063009DF55F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6318DF82A6E5063009DF55F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F60E3F812A72103200C93093 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				F60E3F822A72104300C93093 /* MainCoordinator.swift */,
+				F60E3F842A72104D00C93093 /* UserListCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		F6318DEA2A6E5063009DF55F = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +131,7 @@
 		F6318DF52A6E5063009DF55F /* GitApp */ = {
 			isa = PBXGroup;
 			children = (
+				F60E3F812A72103200C93093 /* Coordinators */,
 				F6318DF62A6E5063009DF55F /* AppDelegate.swift */,
 				F6318DF82A6E5063009DF55F /* SceneDelegate.swift */,
 				F6318DFA2A6E5063009DF55F /* ViewController.swift */,
@@ -294,6 +308,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6318DFB2A6E5063009DF55F /* ViewController.swift in Sources */,
+				F60E3F832A72104400C93093 /* MainCoordinator.swift in Sources */,
+				F60E3F852A72104D00C93093 /* UserListCoordinator.swift in Sources */,
 				F6318DF72A6E5063009DF55F /* AppDelegate.swift in Sources */,
 				F6318DF92A6E5063009DF55F /* SceneDelegate.swift in Sources */,
 			);
