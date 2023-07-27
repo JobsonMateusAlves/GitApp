@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Repo {
+public struct Repo: Equatable {
     public let name: String
     public let language: String
     
