@@ -75,3 +75,15 @@ public class UserListViewModelImpl: UserListViewModel {
         users[index]
     }
 }
+
+public struct UserListViewModelFactory {
+    public static func make(
+        getUsersWithPaginationUseCase: GetUsersWithPaginationUseCase,
+        searchUsersWithPaginationUseCase: SearchUsersWithPaginationUseCase
+    ) -> UserListViewModel {
+        UserListViewModelImpl(
+            getUsersWithPaginationUseCase: getUsersWithPaginationUseCase,
+            searchUsersWithPaginationUseCase: searchUsersWithPaginationUseCase
+        )
+    }
+}

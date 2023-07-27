@@ -20,12 +20,14 @@ class UserListCoordinator: UserList, Coordinator {
     }
 
     func start() {
-        let viewModel: UserListViewModel = UserListViewModelImpl(
-            getUsersWithPaginationUseCase: GetUsersWithPaginationUseCaseImpl(
-                repository: UsersRepositoryFactory.make()
+        let repository: UsersRepository = UsersRepositoryFactory.make()
+
+        let viewModel: UserListViewModel = UserListViewModelFactory.make(
+            getUsersWithPaginationUseCase: GetUsersWithPaginationUseCaseFactory.make(
+                repository: repository
             ),
-            searchUsersWithPaginationUseCase: SearchUsersWithPaginationUseCaseImpl(
-                repository: UsersRepositoryFactory.make()
+            searchUsersWithPaginationUseCase: SearchUsersWithPaginationUseCaseFactory.make(
+                repository: repository
             )
         )
         

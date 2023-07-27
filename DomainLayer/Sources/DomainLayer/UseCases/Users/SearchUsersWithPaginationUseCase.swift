@@ -24,3 +24,8 @@ public final class SearchUsersWithPaginationUseCaseImpl: SearchUsersWithPaginati
     }
 }
 
+public struct SearchUsersWithPaginationUseCaseFactory {
+    public static func make(repository: UsersRepository) -> SearchUsersWithPaginationUseCase {
+        SearchUsersWithPaginationUseCaseImpl(repository: repository)
+    }
+}

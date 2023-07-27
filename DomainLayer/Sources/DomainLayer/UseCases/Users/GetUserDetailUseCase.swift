@@ -24,3 +24,9 @@ public final class GetUserDetailUseCaseImpl: GetUserDetailUseCase {
         repository.fetch(user: User, completion: completion)
     }
 }
+
+public struct GetUserDetailUseCaseFactory {
+    public static func make(repository: UsersRepository) -> GetUserDetailUseCase {
+        GetUserDetailUseCaseImpl(repository: repository)
+    }
+}

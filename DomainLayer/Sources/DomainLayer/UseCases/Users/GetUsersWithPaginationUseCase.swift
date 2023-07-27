@@ -24,3 +24,9 @@ public final class GetUsersWithPaginationUseCaseImpl: GetUsersWithPaginationUseC
         repository.fetchAll(isFirstPage: isFirstPage, completion: completion)
     }
 }
+
+public struct GetUsersWithPaginationUseCaseFactory {
+    public static func make(repository: UsersRepository) -> GetUsersWithPaginationUseCase {
+        GetUsersWithPaginationUseCaseImpl(repository: repository)
+    }
+}

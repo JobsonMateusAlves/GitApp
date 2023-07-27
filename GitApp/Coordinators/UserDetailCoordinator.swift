@@ -22,7 +22,10 @@ class UserDetailCoordinator: Coordinator, UserDetail {
     }
 
     func start() {
-        let viewModel: UserDetailViewModel = UserDetailViewModelImpl(
+        let viewModel: UserDetailViewModel = UserDetailViewModelFactory.make(
+            getUserDetailUseCase: GetUserDetailUseCaseFactory.make(
+                repository: UsersRepositoryFactory.make()
+            )
             user: user
         )
         

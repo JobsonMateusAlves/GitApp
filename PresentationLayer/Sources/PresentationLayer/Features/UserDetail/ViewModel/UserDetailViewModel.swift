@@ -37,3 +37,9 @@ public class UserDetailViewModelImpl: UserDetailViewModel {
         }
     }
 }
+
+public struct UserDetailViewModelFactory {
+    public static func make(getUserDetailUseCase: GetUserDetailUseCase, user: User) -> UserDetailViewModel {
+        UserDetailViewModelImpl(getUserDetailUseCase: getUserDetailUseCase, user: user)
+    }
+}
