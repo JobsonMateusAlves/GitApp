@@ -63,7 +63,7 @@ final class UsersServiceImpl: Provider, UsersService {
     }
 
     func fetch(user: User, completion: @escaping (Result<User, Error>) -> Void) {
-        request(target: UsersAPI.fetch(user: user)) { [weak self] result in
+        request(target: UsersAPI.fetch(user: user)) { result in
             switch result {
             case .success((let data, _)):
                 do {
