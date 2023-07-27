@@ -11,6 +11,7 @@ import Network
 enum UsersAPI {
     case fetchAll(_ since: Int?)
     case search(searchText: String, page: Int)
+    case fetch(user: User)
 }
 
 extension UsersAPI: API {
@@ -22,6 +23,9 @@ extension UsersAPI: API {
             
         case .search(let searchText, let page):
             return "\(baseURL)/search/users?q=\(searchText)&page=\(page)"
+
+        case .fetch:
+            return "\(baseURL)/users/\(user.login)"
         }
     }
     

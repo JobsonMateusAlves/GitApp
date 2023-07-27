@@ -36,6 +36,17 @@ final class UsersRepositoryImpl: UsersRepository {
             }
         }
     }
+
+    func fetch(user: User, completion: @escaping (Result<User, Error>) -> Void) {
+        service.fetch(user: user) { result in
+            switch result {
+            case .success(let newUser):
+                completion(.success(newUser.toDomain()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
 
 public struct UsersRepositoryFactory {

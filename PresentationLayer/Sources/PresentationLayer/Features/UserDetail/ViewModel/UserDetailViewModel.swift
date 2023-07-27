@@ -14,15 +14,26 @@ public protocol UserDetailViewModel {
 }
 
 public class UserDetailViewModelImpl: UserDetailViewModel {
+    private getUserDetailUseCase: GetUserDetailUseCase
     public var user: User
     
     public init(
+        getUserDetailUseCase: GetUserDetailUseCase,
         user: User
     ) {
+        self.getUserDetailUseCase = getUserDetailUseCase
         self.user = user
     }
     
     public func getUser(completion: @escaping (() -> Void)) {
-       completion()
+        getUserDetailUseCase.call(user: user) { [weak self] result in
+            switch result {
+            case .success(let user):
+                self?.user = user
+            case .failure(let error):
+                break
+            }
+            completion()
+        }
     }
 }

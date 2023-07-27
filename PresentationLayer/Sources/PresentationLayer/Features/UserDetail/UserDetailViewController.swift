@@ -101,6 +101,13 @@ public class UserDetailViewController: UIViewController {
         return button
     }()
 
+    let tableView: UITableView = {
+        let tableView: UITableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .black
+        return tableView
+    }()
+
     private let viewModel: UserDetailViewModel
     private let coordinator: (UserDetail & Coordinator)
     
@@ -135,10 +142,10 @@ public class UserDetailViewController: UIViewController {
 
     func setContent() {
         let user: User = viewModel.user
-        nameLabel.text = "Jobson Mateus"
-        loginLabel.text = "JobsonMateusAlves"
-        bioLabel.text = "iOS Developer"
-        locationLabel.text = "Fortaleza"
+        nameLabel.text = user.name
+        loginLabel.text = user.login
+        bioLabel.text = user.bio
+        locationLabel.text = user.location
         followersLabel.text = "\(user.followers) seguidores"
         followingLabel.text = "\(user.following) seguindo"
         urlButton.setTitle(user.htmlUrl, for: .normal)
@@ -207,7 +214,7 @@ extension UserDetailViewController {
         view.addSubview(bioLabel)
 
         let constraints: [NSLayoutConstraint] = [
-            bioLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 8),
+            bioLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 16),
             bioLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
             bioLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -16)
         ]

@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol UsersRepository {
-    func fetchAll(isFirstPage: Bool, completion: @escaping (Result<[DomainLayer.User], Error>) -> Void)
-    func search(searchText: String, isFirstPage: Bool, completion: @escaping (Result<[DomainLayer.User], Error>) -> Void)
+    func fetchAll(isFirstPage: Bool, completion: @escaping (Result<[User], Error>) -> Void)
+    func search(searchText: String, isFirstPage: Bool, completion: @escaping (Result<[User], Error>) -> Void)
+    func fetch(user: User, completion: @escaping (Result<User, Error>) -> Void)
 }

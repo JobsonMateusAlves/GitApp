@@ -24,5 +24,3 @@ public final class GetUsersWithPaginationUseCaseImpl: GetUsersWithPaginationUseC
         repository.fetchAll(isFirstPage: isFirstPage, completion: completion)
     }
 }
-
-
