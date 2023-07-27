@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol UserDetail {
+
+}
+
 public class UserDetailViewController: UIViewController {
 
     let userImageView: UIImageView = {
@@ -95,6 +99,10 @@ public class UserDetailViewController: UIViewController {
         return label
     }()
 
+    private let viewModel: UserDetailViewModel
+    private let coordinator: (UserDetail & Coordinator)
+    private let imageLoader: ImageLoader = ImageLoader()
+
     public init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -107,14 +115,40 @@ public class UserDetailViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupButton()
+        loadData()
     }
 
     func setupButton() {
         urlButton.addTarget(self, action: #selector(openUserHtmlUrl), for: .touchUpInside)
     }
 
-    @objc func openUserHtmlUrl() {
+    func loadData() {
+        viewModel.getUser() {
+            setContent()
+        }
+    }
 
+    func setContent() {
+        let user: User = viewModel.user
+        nameLabel.text = user.name
+        loginLabel.text = user.login
+        bioLabel.text = user.bio
+        locationLabel.text = user.location
+        followersLabel.text = user.followers
+        followingLabel.text = user.following
+        urlButton.setTitle(user.htmlUrl, for: .normal)
+
+        if let url = URL(string: user.avatarUrl) {
+            imageLoader.loadImage(with: url) { [weak self] image in
+                self?.userImageView.setImage(image: image)
+            }
+        }
+    }
+
+    @objc func openUserHtmlUrl() {
+        if let url = URL(string: viewModel.user.htmlUrl) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 }
 
